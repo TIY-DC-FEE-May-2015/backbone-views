@@ -31,3 +31,11 @@
 	vertical-align: top;
 }
 
+#scoreboard {
+	font-size: 28px;
+}
+
+.dead-card {
+	width: 20px;
+	height: 20px;
+}

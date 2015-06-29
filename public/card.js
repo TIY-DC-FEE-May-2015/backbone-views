@@ -9,6 +9,7 @@ var Card = Backbone.View.extend({
   // more todo
   events: {
   	"click .card": "flipCard",
+  	"gameover": "restoreCard",
   },
 
   // also todo
@@ -38,7 +39,13 @@ var Card = Backbone.View.extend({
   },
 
   removeCard: function(){
+  	this.stored = this.el
   	$(this.el).empty()
+  },
+
+  restoreCard: function(){
+  	console.log("gameover?")
+  	this.el = this.stored
   },
 
   template: Handlebars.compile( $("#card-template").html())

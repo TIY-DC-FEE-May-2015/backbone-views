@@ -3,10 +3,21 @@ var flipped = 0
 var card1
 var card2
 var currentCard
+var matches = 0
+var points = 1000
 
-$(document).on("ready", function(){
+var pointCounter = function() {
+  points-=1
+}
 
-  // Create a 16-member array with 2 each of eight colors
+var pointClock = setInterval(function(){
+  pointCounter()
+  $("#scoreboard").text(points)
+}, 100)
+
+function dealCards() {
+
+    // Create a 16-member array with 2 each of eight colors
   var colors = [ 
     "red", "red", 
     "blue", "blue", 
@@ -37,11 +48,27 @@ $(document).on("ready", function(){
 
   })
 
+}
+
+
+$(document).on("ready", function(){
+
+  dealCards()
+
   eventDispatcher.on("card:flipped", function(card){
     //reset round when a third card is revealed
     if (flipped === 2) {
-      card1.flipBack(card1)
-      card2.flipBack(card2)
+      if (card1.color === card2.color) {
+        //remove the cards and add points
+        var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
+        $("#removed-box").append(htmlString)
+        card1.removeCard()
+        card2.removeCard()
+      } else {
+        card1.flipBack(card1)
+        card2.flipBack(card2)
+      }
+
       flipped=0
       currentCard = ""
       card1=""
@@ -53,28 +80,37 @@ $(document).on("ready", function(){
       currentCard = card.cid
       card1 = card2
       card2 = card
-      console.log(currentCard, card1, card2)
 
       flipped+=1
-      //if two are revealed, play round
-      if (flipped === 2) {
-        //check for a matched pair
-        if (card1.color === card2.color) {
-          console.log("matched pair")
-          
-          //remove the cards and add points
-          $("#removed-box").append(card2.color + "<br>")
-          card1.removeCard()
-          card2.removeCard()
-          
+    }
 
-        }
-
-        //end of round; reset the storage vars
-
-      }
+    if (card1.color === card2.color) {
+      eventDispatcher.trigger("match")
     }
 
   })
+
+  eventDispatcher.on("match", function(){
+    matches += 1
+
+    if (matches === 8) {
+      alert("You did it (finally)!")
+      clearInterval(pointClock)
+      $("#winnerboard").prepend(points)
+  
+      _.each(cards, function(card){
+        console.log(card)
+        card.restoreCard()
+      })
+
+      eventDispatcher.trigger("gameover")
+    }
+  })
+
+  eventDispatcher.on("gameover", function(cards){
+
+    dealCards()
+  })
+
 
 })
