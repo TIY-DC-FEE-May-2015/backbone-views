@@ -1,0 +1,18 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.card{
+	display: inline-block;
+	height: 100px;
+	width: 20%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+	border: solid 1px black;
+}
+
+.hidden {
+	display: none;
+}

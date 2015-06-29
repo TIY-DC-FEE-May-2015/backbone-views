@@ -1,5 +1,12 @@
 var cards
 
+var removeCard = function(){
+    if (colorOne === colorTwo) {
+      console.log("match")
+    }
+  }
+
+
 $(document).on("ready", function(){
 
   // Create a 16-member array with 2 each of eight colors
@@ -22,6 +29,7 @@ $(document).on("ready", function(){
 
     // Instantiate a new card view
     var card = new Card({ 
+      $container: $(".front"),
       color: color 
     })
 
@@ -31,6 +39,6 @@ $(document).on("ready", function(){
     // Return it (from the map iterator)
     return card
 
-  })
+  }) 
 
 })
