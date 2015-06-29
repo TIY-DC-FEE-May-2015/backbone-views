@@ -2,10 +2,19 @@
 <html>
 <head>
   <title></title>
+  <link rel="stylesheet" type="text/css" href="card.css">
 </head>
 <body>
 
   <div id="card-container"></div>
+  <div id="sidebar">
+  	<h2>Cards Removed</h2>
+  	<div id="removed-box"></div>
+  </div>
+
+  <template id="card-template">
+  		<div class="card" data-color="{{color}}"></div>
+  </template>
 
   <script src="libs/underscore.js"></script>
   <script src="libs/jquery.js"></script>
