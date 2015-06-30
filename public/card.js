@@ -90,6 +90,9 @@ var Card = Backbone.View.extend({
       clicks = 0
     }
 
+    if (matches === 8) {
+      alert("You Win!")
+    }
   },
 
   template: Handlebars.compile( $("#card-template").html() )
