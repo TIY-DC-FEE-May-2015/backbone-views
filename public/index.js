@@ -1,7 +1,7 @@
 var cards
 
 $(document).on("ready", function(){
-
+$("#card-container div").removeClass()
   // Create a 16-member array with 2 each of eight colors
   var colors = [ 
     "red", "red", 
@@ -23,8 +23,8 @@ $(document).on("ready", function(){
     // Instantiate a new card view along with position
     var card = new Card({ 
       color: color,
-      className: color,
-   
+      className: "name",
+
     })
     
 

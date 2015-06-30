@@ -7,7 +7,8 @@ var Card = Backbone.View.extend({
 
   // more todo
   events: {
-        "click div": "clickName",
+  	
+        "click": "flipped",
   },
 
   // also todo
@@ -22,9 +23,11 @@ var Card = Backbone.View.extend({
   	console.log(this.data.color)
   },
 
-  clickName: function() {
-    card.$el.find(".name").css('background-color', this.data.color);
+ flipped: function() {
+ 	this.$el.css("background-color", this.data.color)
+    //this.$el.toggleClass()
   },
 
+  
   
 })
