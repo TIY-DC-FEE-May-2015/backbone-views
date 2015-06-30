@@ -23,8 +23,6 @@ $("#card-container div").removeClass()
     // Instantiate a new card view along with position
     var card = new Card({ 
       color: color,
-      className: "name",
-
     })
     
 
