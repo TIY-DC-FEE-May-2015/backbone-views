@@ -5,18 +5,49 @@ var card2
 var currentCard
 var matches = 0
 var points = 1000
+var game = 0
+
+
+var newGame = function() {
+  game += 1
+  dealCards()
+
+  pointClock()
+}
+
+var pointClock = function() {
+  var pointInterval = setInterval(function(){
+    points -= 1
+    $("#scoreboard").text("Your score: "+this.points)
+  }, 100)
+
+  eventDispatcher.on("match", function(){
+    matches += 1
+    console.log(matches)
+
+    if (matches === 8*game) {
+      alert("You did it (finally)!")
+      clearInterval(pointInterval)
+      
+      eventDispatcher.trigger("gameover")
+    }
+  })
+
+}
 
 var pointCounter = function() {
   points-=1
 }
 
-var pointClock = setInterval(function(){
-  pointCounter()
-  $("#scoreboard").text(points)
-}, 100)
+var clearBoard = function() {
+  $("#card-container").empty()
+  $("#removed-box").empty()
+  matches = 0
+  points = 1000
+}
 
 function dealCards() {
-
+  clearBoard()
     // Create a 16-member array with 2 each of eight colors
   var colors = [ 
     "red", "red", 
@@ -60,8 +91,7 @@ $(document).on("ready", function(){
     if (flipped === 2) {
       if (card1.color === card2.color) {
         //remove the cards and add points
-        var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
-        $("#removed-box").append(htmlString)
+
         card1.removeCard()
         card2.removeCard()
       } else {
@@ -80,37 +110,38 @@ $(document).on("ready", function(){
       currentCard = card.cid
       card1 = card2
       card2 = card
+      console.log(card)
 
       flipped+=1
     }
 
     if (card1.color === card2.color) {
       eventDispatcher.trigger("match")
+      console.log("match")
+      var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
+      $("#removed-box").append(htmlString)
     }
 
   })
 
-  eventDispatcher.on("match", function(){
-    matches += 1
 
-    if (matches === 8) {
-      alert("You did it (finally)!")
-      clearInterval(pointClock)
-      $("#winnerboard").prepend(points)
-  
-      _.each(cards, function(card){
-        console.log(card)
-        card.restoreCard()
-      })
 
-      eventDispatcher.trigger("gameover")
-    }
+  eventDispatcher.on("gameover", function(){
+    
+    $("#winnerboard").prepend("<div class='score'>Game Number "+game+": "+points+"</div>")
+
+    _.each(cards, function(card){
+      card.restoreCard()
+      
+    })
+
+    
   })
 
-  eventDispatcher.on("gameover", function(cards){
-
-    dealCards()
+  $("#new-game").on("click", function(){
+    newGame()
   })
 
+  newGame()
 
 })

@@ -27,8 +27,13 @@
 }
 
 #sidebar {
+	padding: 10px;
 	display: inline-block;
 	vertical-align: top;
+	background: darkslategray;
+	height: 100vh;
+	color: white;
+	font-family: Tahoma, sans-serif;
 }
 
 #scoreboard {
@@ -38,4 +43,11 @@
 .dead-card {
 	width: 20px;
 	height: 20px;
+	display: inline-block;
+	margin: 2px;
+}
+
+#winnerboard {
+	font-size: 16px;
+	padding-left: 10px;
 }
