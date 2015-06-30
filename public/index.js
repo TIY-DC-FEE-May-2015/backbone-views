@@ -20,17 +20,21 @@ $(document).on("ready", function(){
   // Create an array of Card views based on the randomized color array
   cards = _.map(colors, function(color){
 
-    // Instantiate a new card view
+    // Instantiate a new card view along with position
     var card = new Card({ 
-      color: color 
+      color: color,
+      className: color,
+   
     })
+    
 
     // Append that card view into the page
     $("#card-container").append( card.$el )
+  
 
     // Return it (from the map iterator)
     return card
 
   })
-
+ 
 })
