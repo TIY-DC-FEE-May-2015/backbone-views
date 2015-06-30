@@ -15,7 +15,7 @@
 	text-align: center
 }
 
-.card{
+.card{	
 	display: inline-block;
 	height: 20vh;
 	width: 20%;
@@ -24,6 +24,10 @@
 	border: solid 1px black;
 }
 
+.back {
+	background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0112/0908/rrrchevronbig-lightergrey_shop_preview.png");
+}
+
 .hidden {
-	display: none;
+	background-color: white;
 }
