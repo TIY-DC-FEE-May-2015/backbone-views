@@ -6,12 +6,47 @@ var currentCard
 var matches = 0
 var points = 1000
 var game = 0
+var x
+var y
 
+
+var pointBonus = function() {
+  points+=50
+    $(".bonus").css({
+    top: y + "px",
+    left: x+ "px",
+    color: "white",
+  })
+  $(".bonus").text("+50")
+  $(".bonus").addClass("active")
+
+  
+  setTimeout(function(){
+    $(".bonus").removeClass("active")
+  }, 500)
+
+}
+
+var pointPenalty = function(){
+  points-=25
+  
+  $(".bonus").css({
+    top: y+ "px",
+    left: x+ "px",
+    color: "red",
+  })
+  $(".bonus").text("-25")
+  $(".bonus").addClass("active")
+
+
+  setTimeout(function(){
+    $(".bonus").removeClass("active")
+  }, 500)
+}
 
 var newGame = function() {
   game += 1
   dealCards()
-
   pointClock()
 }
 
@@ -23,10 +58,8 @@ var pointClock = function() {
 
   eventDispatcher.on("match", function(){
     matches += 1
-    console.log(matches)
 
     if (matches === 8*game) {
-      alert("You did it (finally)!")
       clearInterval(pointInterval)
       
       eventDispatcher.trigger("gameover")
@@ -86,7 +119,8 @@ $(document).on("ready", function(){
 
   dealCards()
 
-  eventDispatcher.on("card:flipped", function(card){
+  eventDispatcher.on("card:flipped", function(card, event){
+
     //reset round when a third card is revealed
     if (flipped === 2) {
       if (card1.color === card2.color) {
@@ -110,25 +144,27 @@ $(document).on("ready", function(){
       currentCard = card.cid
       card1 = card2
       card2 = card
-      console.log(card)
 
       flipped+=1
     }
 
-    if (card1.color === card2.color) {
-      eventDispatcher.trigger("match")
-      console.log("match")
-      var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
-      $("#removed-box").append(htmlString)
+    if (flipped === 2) {
+      if (card1.color === card2.color) {
+        pointBonus()
+        eventDispatcher.trigger("match")
+        var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
+        $("#removed-box").append(htmlString)
+      } else {
+        pointPenalty()
+      }
     }
-
   })
 
 
 
   eventDispatcher.on("gameover", function(){
     
-    $("#winnerboard").prepend("<div class='score'>Game Number "+game+": "+points+"</div>")
+    $("#winnerboard").prepend("<div class='score'>Game "+game+": "+points+" points</div>")
 
     _.each(cards, function(card){
       card.restoreCard()
@@ -143,5 +179,6 @@ $(document).on("ready", function(){
   })
 
   newGame()
+
 
 })

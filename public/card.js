@@ -23,11 +23,13 @@ var Card = Backbone.View.extend({
   	this.$el.html( this.template(viewData) )
   },
 
-  flipCard: function() {
+  flipCard: function(event) {
   	var $card = $(this.el).find(".card")
   	$card.css("background", this.color)
   	//this = a backbone view
   	//$card = a div - the el of this
+    x = event.pageX
+    y = event.pageY
 
   	//let listener know that a card has been flipped
   	eventDispatcher.trigger("card:flipped", this)
@@ -44,7 +46,6 @@ var Card = Backbone.View.extend({
   },
 
   restoreCard: function(){
-  	console.log("gameover?")
   	this.el = this.stored
   },
 
