@@ -29,7 +29,7 @@ $(document).on("ready", function(){
 
     // Instantiate a new card view
     var card = new Card({ 
-      $container: $(".front"),
+      $container: $("#card-container"),
       color: color 
     })
 
