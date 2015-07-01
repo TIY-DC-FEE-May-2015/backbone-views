@@ -40,7 +40,7 @@ var Card = Backbone.View.extend({
     this.$el.removeClass("back")
 
     clicks+=1
-    
+    console.log(clicks)
 
     if (clicks === 1 ) {
       colorOne = this.viewData.color
@@ -57,42 +57,42 @@ var Card = Backbone.View.extend({
       colorTwo = colorOne
       colorOne = this.viewData.color
       savedColor2 = this.$el
+     
+       // Checks for match
+      if (colorOne === colorTwo) {
 
-     }
-     // Checks for match
-    if (colorOne === colorTwo) {
-        console.log("match", savedColor1, savedColor2)
+        // Allows player to see matching cards before removing
+          setTimeout(function() {
+            savedColor2.css('background', 'none').css('border', 'none')
+            savedColor1.css('background', 'none').css('border', 'none')
 
-      // Allows player to see matching cards before removing
-      if (clicks === 3)  {
-        this.$el.addClass("back")
-        savedColor2.css('background-color', 'transparent').css('border', 'none')
-        savedColor1.css('background-color', 'transparent').css('border', 'none')
+            matches += 1
+            console.log(matches)
+            colorTwo = ""
+            colorOne = ""
+            clicks = 0
+            savedColor2 = ""
+            savedColor1 = ""
+            // Signal end of game
+            if (matches === 8) {
+              alert("You Win!")
+            }
+        }, 1000)
+      }
+      // Turns cards over if cards do not match
+      if (colorOne !== colorTwo) {
+        setTimeout(function() {
 
-        matches += 1
-        console.log(matches)
-        colorTwo = ""
-        colorOne = ""
-        clicks = 0
-        savedColor2 = ""
-        savedColor1 = ""
+          savedColor1.addClass("back")
+          savedColor2.addClass("back")
+
+          colorOne = ""
+          colorTwo = ""
+          clicks = 0
+        }, 1000)
       }
     }
-    // Turns cards over on 3rd click.
-    // Does not reveal card of 3rd
-    if (clicks === 3) {
-      this.$el.addClass("back")
-      savedColor1.addClass("back")
-      savedColor2.addClass("back")
-
-      colorOne = ""
-      colorTwo = ""
-      clicks = 0
-    }
-
-    if (matches === 8) {
-      alert("You Win!")
-    }
+    
   },
 
   template: Handlebars.compile( $("#card-template").html() )
