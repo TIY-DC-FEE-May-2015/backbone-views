@@ -1,7 +1,7 @@
 var cards
 
 $(document).on("ready", function(){
-
+$("#card-container div").removeClass()
   // Create a 16-member array with 2 each of eight colors
   var colors = [ 
     "red", "red", 
@@ -20,17 +20,19 @@ $(document).on("ready", function(){
   // Create an array of Card views based on the randomized color array
   cards = _.map(colors, function(color){
 
-    // Instantiate a new card view
+    // Instantiate a new card view along with position
     var card = new Card({ 
-      color: color 
+      color: color,
     })
+    
 
     // Append that card view into the page
     $("#card-container").append( card.$el )
+  
 
     // Return it (from the map iterator)
     return card
 
   })
-
+ 
 })

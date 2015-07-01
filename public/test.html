@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Memory</title>
+  <style>
+  	* {
+  		margin: 0px;
+  		padding: 0px;
+  		box-sizing: border-box;
+  	}
+    #card-container {
+      text-align: center;
+    }
+    
+    #card-container div{
+      display: inline-block;
+      height: 125px;
+	    width: 20%;
+	    margin: 10px 10px;
+      
+    }
+
+    .back {
+      background-image: url("tribalprint.jpg");
+    }
+
+  </style>
 </head>
 <body>
 
+<div id ="container">
   <div id="card-container"></div>
+</div>
 
   <script src="libs/underscore.js"></script>
   <script src="libs/jquery.js"></script>
