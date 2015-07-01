@@ -1,0 +1,14 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+#card-container div{
+	display: inline-block;
+	height:15vh;
+	width:20%;
+	border:solid 3px black;
+	padding:10px;
+	margin:20px;
+}
