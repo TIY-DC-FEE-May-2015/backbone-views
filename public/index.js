@@ -32,5 +32,10 @@ $(document).on("ready", function(){
     return card
 
   })
+  
+  eventDispatcher.on("another-card:clicked", function(view){
+  
+    //view.$el.css("background-color", view.viewData.color)
 
+  })
 })
