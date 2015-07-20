@@ -10,19 +10,24 @@ var x
 var y
 
 
-var pointBonus = function() {
-  points+=50
-    $(".bonus").css({
+var pointBonus = function(num) {
+  points+=num
+  var bonus = num
+  $(".bonus").css({
     top: y + "px",
     left: x+ "px",
-    color: "white",
+    color: "red",
   })
-  $(".bonus").text("+50")
-  $(".bonus").addClass("active")
+  if (num > 0) {
+    var bonus = "+"+num
+    $(".bonus").css("color", "white")
+  }
+  $(".bonus").text(bonus)
+  $(".bonus").fadeIn()
 
   
   setTimeout(function(){
-    $(".bonus").removeClass("active")
+    $(".bonus").fadeOut()
   }, 500)
 
 }
@@ -36,11 +41,11 @@ var pointPenalty = function(){
     color: "red",
   })
   $(".bonus").text("-25")
-  $(".bonus").addClass("active")
+  $(".bonus").fadeIn()
 
 
   setTimeout(function(){
-    $(".bonus").removeClass("active")
+    $(".bonus").fadeOut()
   }, 500)
 }
 
@@ -56,6 +61,7 @@ var pointClock = function() {
     $("#scoreboard").text("Your score: "+this.points)
   }, 100)
 
+//move this off pointClock - because it gets rebound each time - and multiplies
   eventDispatcher.on("match", function(){
     matches += 1
 
@@ -124,8 +130,7 @@ $(document).on("ready", function(){
     //reset round when a third card is revealed
     if (flipped === 2) {
       if (card1.color === card2.color) {
-        //remove the cards and add points
-
+        //remove the cards
         card1.removeCard()
         card2.removeCard()
       } else {
@@ -150,12 +155,12 @@ $(document).on("ready", function(){
 
     if (flipped === 2) {
       if (card1.color === card2.color) {
-        pointBonus()
+        pointBonus(+50)
         eventDispatcher.trigger("match")
         var htmlString = $("<div class='dead-card' style='background:"+card2.color+"''></div>")
         $("#removed-box").append(htmlString)
       } else {
-        pointPenalty()
+        pointBonus(-25)
       }
     }
   })

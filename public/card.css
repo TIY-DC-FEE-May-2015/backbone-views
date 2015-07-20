@@ -16,14 +16,14 @@ h2 {
 }
 
 .bonus {
-	opacity:0;
+	opacity:0.8;
 	color: white;
 	background-color: RBGA(255,255,255,0);
 	font-size: 50px;
 	font-family: Garamond, Helvetica, arial;
 	position: absolute;
 	text-shadow: 2px 2px gray;
-	transition: all .25s;
+
 }
 
 .bonus.active {
@@ -111,7 +111,7 @@ h2 {
 	margin-top: 10px;
 	overflow-y: scroll;
 	background-color: beige;
-	max-height: 300px;
+	max-height: 150px;
 }
 
 .score {
