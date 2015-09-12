@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Flip The Cards And Remember What They Are</title>
+  <link rel="stylesheet" type="text/css" href="card.css">
 </head>
 <body>
 
+
+<div class="page-container">
+  <div class="border"></div>
   <div id="card-container"></div>
+    <div class="bonus"></div>
+  <div class="border"></div>
+  
+  <div id="sidebar">
+    <div id="logo"><img src="assets/gamelogo.png"></div>
+  	<div id="new-game">Gnu Game</div>
+  	
+    <div id="scoreboard"></div>
+  
+  	<div id="removed-container">
+      <h2>Cards Removed</h2>
+    	<div id="removed-box"></div>
+    </div>
+  
+  	<h2>Winnerboard:</h2>
+  	<div id="winnerboard">
+ 
+    </div>
+  </div>
+  <div class="border"></div>
+</div>
+
+  <template id="card-template">
+  		<div class="card" data-color="{{color}}"></div>
+  </template>
 
   <script src="libs/underscore.js"></script>
   <script src="libs/jquery.js"></script>

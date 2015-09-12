@@ -1,0 +1,119 @@
+*{
+	margin: 0px;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 0;
+}
+
+h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+.page-container {
+	text-align: center;
+	background-color: RGB(242, 197, 64);
+}
+
+.bonus {
+	opacity:0.8;
+	color: white;
+	background-color: RBGA(255,255,255,0);
+	font-size: 50px;
+	font-family: Garamond, Helvetica, arial;
+	position: absolute;
+	text-shadow: 2px 2px gray;
+}
+
+.bonus.active {
+	opacity: .8;
+
+}
+
+#card-container {
+	height: 100vh;
+	width: 50%;
+	background: lightgray;
+	display: inline-block;
+}
+
+.card-box {
+	height: 25vh;
+	width: 25%;
+	padding: 5px;
+	display: inline-block;
+}
+
+.card {
+	background: navy;
+	width: 100%;
+	height: 100%;
+	transition: all .15s;
+	border-radius: 15px;
+}
+
+.border {
+	display: inline-block;
+	background-image: url("assets/borderpanel.png");
+	width: 8px;
+	height: 100vh;
+}
+
+#new-game {
+	font-size: 17px;
+	padding: 5px;
+	background: orange;
+	margin: 0 auto;
+	color: white;
+	text-align: center;
+	width: 100px;
+	border: solid 4px RGB(255, 199, 114);
+}
+
+#sidebar {
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+	background: darkslategray;
+	height: 100vh;
+	color: white;
+	font-family: Tahoma, sans-serif;
+	width:250px;
+}
+
+#logo {
+	text-align: center
+}
+
+#scoreboard {
+	font-size: 28px;
+	padding: 20px 4px;
+
+}
+
+#removed-container {
+	height: 80px;
+	border-bottom: solid 1px maroon;
+	margin-bottom: 10px;
+}
+
+.dead-card {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin: 2px;
+}
+
+#winnerboard {
+	font-size: 16px;
+	padding-left: 10px;
+	margin-top: 10px;
+	overflow-y: scroll;
+	background-color: beige;
+	max-height: 150px;
+}
+
+.score {
+	font-size: 15px;
+	color: RGB(39, 40, 34);
+}
