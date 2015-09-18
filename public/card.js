@@ -67,17 +67,13 @@ var Card = Backbone.View.extend({
             savedColor1.css('background', 'none').css('border', 'none')
 
             matches += 1
-            console.log(matches)
-            colorTwo = ""
-            colorOne = ""
             clicks = 0
-            savedColor2 = ""
-            savedColor1 = ""
+
             // Signal end of game
             if (matches === 8) {
               alert("You Win!")
             }
-        }, 1000)
+        }, 300)
       }
       // Turns cards over if cards do not match
       if (colorOne !== colorTwo) {
@@ -85,11 +81,8 @@ var Card = Backbone.View.extend({
 
           savedColor1.addClass("back")
           savedColor2.addClass("back")
-
-          colorOne = ""
-          colorTwo = ""
           clicks = 0
-        }, 1000)
+        }, 300)
       }
     }
     
