@@ -85,7 +85,7 @@ var Card = Backbone.View.extend({
         }, 300)
       }
     }
-    
+     
   },
 
   template: Handlebars.compile( $("#card-template").html() )
