@@ -1,0 +1,45 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.header {
+	height: 10vh;
+	width: 100%;
+	background: rgb(100, 100, 100);
+	font-size: 7vh;
+	font-family: Helvetica;
+	color: white;
+	text-align: center;
+	padding-top: 1vh;
+}
+
+.game-container {
+	height: 100vh;
+	width: 100%;
+}
+
+#card-container {
+	margin: 0vh auto;
+	padding: 0px 20px;
+	padding-top: 10px;
+	text-align: center
+}
+
+.card{	
+	display: inline-block;
+	height: 20vh;
+	width: 20%;
+	margin-left: 2%;
+	margin-bottom: 2%;
+	border: solid 1px black;
+}
+
+.back {
+	background-image: url("http://s3.amazonaws.com/spoonflower/public/design_thumbnails/0112/0908/rrrchevronbig-lightergrey_shop_preview.png");
+}
+
+.hidden {
+	background-color: white;
+}
